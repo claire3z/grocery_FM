@@ -21,7 +21,7 @@ def fredmeyer_weakly(items_of_interest):
     file_output = 'weeklyAd_'+until_date+'.csv'
     df[columns].to_csv(file_output)
     print(">>> {} to {} <<<".format(from_date,until_date))
-    # print("Data saved at "+file_output)
+    print("Data saved at "+file_output)
 
     alerts = items_of_interest
     for i in alerts:
