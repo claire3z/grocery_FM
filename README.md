@@ -19,10 +19,12 @@ output:
  
 ### Requirments
 
-requests==2.25.1
-
 pandas==1.2.3
 
+numpy==1.19.5
+
 selenium==3.141.0
+
+requests==2.25.1
 
 beautifulsoup4==4.9.3
