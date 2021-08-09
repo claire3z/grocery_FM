@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 import json
 from selenium import webdriver
 pd.options.mode.chained_assignment = None
-
+import time
 
 
 
@@ -40,6 +40,7 @@ if __name__ == '__main__':
 
         driver = webdriver.Chrome()
         driver.get(link)
+
         soup = BeautifulSoup(driver.page_source, 'html.parser')
         scripts = soup.find_all('script', type="application/ld+json")
 
@@ -176,6 +177,17 @@ if __name__ == '__main__':
                         df.at[ix, 'price']))
                 if f == 'n':
                     df.at[ix, 'price'] = input("Please enter the effective unit price after discount: $")
+
+    print("\nI might not have got all the promotion information correct. Could you please help me double-check? ")
+    print(df[['name','quantity','price','current_price','original_price','promotion']])
+
+    print("\nPlease enter the row index and corrected price for the item(s) you would like to amend. When you finish, enter 'end'.")
+
+    user_check = input(' >> Row index and price correction: ')
+    while user_check != 'end':
+        ix, p = user_check.split()
+        df.at[int(ix), 'price'] = p
+        user_check = input(' >> Row index and price correction: ')
 
     df['subtotal'] = df.price.astype(float) * df.quantity
     total = df['subtotal'].sum()
